@@ -6,7 +6,7 @@ import { weatherAgent } from "./agents/weather-agent";
 import {
   toolCallAppropriatenessScorer,
   completenessScorer,
-  // translationScorer, // Temporarily remove problematic scorer
+  translationScorer,
   activityRelevanceScorer,
 } from "./scorers/weather-scorer";
 
@@ -16,15 +16,16 @@ export const mastra = new Mastra({
   scorers: {
     toolCallAppropriatenessScorer,
     completenessScorer,
-    // translationScorer, // Temporarily remove
+    translationScorer,
     activityRelevanceScorer,
   },
   storage: new LibSQLStore({
-    url: ":memory:",
+    // Change to file storage for production
+    url: "file:./mastra.db",
   }),
   logger: new PinoLogger({
     name: "Mastra",
-    level: "debug",
+    level: "info",
   }),
   telemetry: {
     enabled: false,
