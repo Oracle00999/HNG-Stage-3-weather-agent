@@ -40,7 +40,7 @@ export const weatherAgent = new Agent({
     - alertTool: for weather alerts
     - clothingTool: for clothing suggestions
   `,
-  model: "groq/llama-3.3-70b-versatile", // or 'openai/gpt-3.5-turbo' "openai/gpt-4o""
+  model: "groq/llama-3.3-70b-versatile",
   tools: { weatherTool, forecastTool, activityTool, alertTool, clothingTool },
   scorers: {
     toolCallAppropriateness: {
@@ -67,7 +67,7 @@ export const weatherAgent = new Agent({
   },
   memory: new Memory({
     storage: new LibSQLStore({
-      url: "file:../mastra.db",
+      url: "file:../mastra.db", // Keep as is
     }),
   }),
 });
